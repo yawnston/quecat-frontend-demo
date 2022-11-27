@@ -1,10 +1,9 @@
 import { NextPage } from "next";
+import PlansTable from "../../../components/planGrid";
 
 const ExplainPage: NextPage = () => {
     return (
-        <div>
-            Explain page is here!
-        </div>
+        <PlansTable></PlansTable>
     );
 }
 

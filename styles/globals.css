@@ -11,6 +11,12 @@ a {
   text-decoration: none;
 }
 
+td > a {
+  cursor:pointer;
+  color:blue;
+  text-decoration:underline;
+}
+
 * {
   box-sizing: border-box;
 }

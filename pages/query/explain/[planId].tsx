@@ -1,50 +1,38 @@
-import { Box, Button, Grid, Stack, TextField } from "@mui/material";
+import { Box, Button, Grid, Stack } from "@mui/material";
 import { NextPage } from "next";
 import Link from "next/link";
-import CategoryGraph, { ContentKind } from "../../components/categoryGraph";
-import { SchemaCategory, SchemaObject } from "../../models/schemaCategory";
+import { useRouter } from "next/router";
+import CategoryGraph, { ContentKind } from "../../../components/categoryGraph";
 
-const schemaCategory: SchemaCategory = new SchemaCategory([new SchemaObject(1, 'Customer', [])], []);
-const defaultQuery: string = 
-`SELECT {
-    ?customer ordered ?productName ;
-        name ?customerName .
-}
-WHERE {
-    ?product 49 ?productName ;
-        -39/36 ?order .
-    
-    ?order -23/21 ?customer .
-    ?customer 3 ?customerName .
+const PlanExplainPage: NextPage = () => {
+    const router = useRouter();
+    const {planId} = router.query;
+    const contentKind = planId === '268ca404-09ba-4b3b-9584-0ba6ceb8c408'
+        ? ContentKind.Query1
+        : ContentKind.Query2;
 
-    FILTER(?productName = "Lord of the Rings")
-}`;
-
-const QueryPage: NextPage = () => {
     return (
         <>
             <Box sx={{ flexGrow: 1, height: '100%' }}>
                 <Grid container columnSpacing={2} sx={{ height: '100%' }}>
                     <Grid item xs={6}>
-                        <CategoryGraph schemaCategory={schemaCategory} contentKind={ContentKind.Schema} />
+                        <CategoryGraph schemaCategory={undefined} contentKind={contentKind} />
                     </Grid>
                     <Grid item xs={6}>
                         <Grid container height={'100%'} flexDirection={'column'}
                             justifyContent={'space-between'} alignItems={'stretch'}
                         >
                             <Grid item>
-                                <TextField label="Query" defaultValue={defaultQuery}
-                                    multiline fullWidth
-                                />
+                                <div>Plan details go here! {planId}</div>
                             </Grid>
                             <Grid item>
                                 <Stack spacing={2} direction="row">
                                     <Button variant="contained">
-                                        <Link href={'/query/execute'}>Execute</Link>
+                                        <Link href={'/query/execute'}>Execute plan</Link>
                                     </Button>
                                     <Button variant="outlined">
                                         <Link href={'/query/explain'}>
-                                            Explain
+                                            Back
                                         </Link>
                                     </Button>
                                 </Stack>
@@ -55,6 +43,6 @@ const QueryPage: NextPage = () => {
             </Box>
         </>
     );
-};
+}
 
-export default QueryPage
+export default PlanExplainPage
