@@ -34,7 +34,7 @@ const QueryPage: NextPage = () => {
                         >
                             <Grid item>
                                 <TextField label="Query" defaultValue={defaultQuery}
-                                    multiline fullWidth
+                                    multiline fullWidth spellCheck={false}
                                 />
                             </Grid>
                             <Grid item>

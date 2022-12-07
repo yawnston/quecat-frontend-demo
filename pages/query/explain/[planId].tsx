@@ -28,7 +28,7 @@ const PlanExplainPage: NextPage = () => {
         rightGridItems.push(
             <Grid item width={'100%'}>
                 <TextField label={databaseName} defaultValue={planDetails?.queries[index]}
-                    multiline fullWidth
+                    multiline fullWidth spellCheck={false}
                     maxRows={planId === '268ca404-09ba-4b3b-9584-0ba6ceb8c408' ? 12 : 7}
                     minRows={planId === '268ca404-09ba-4b3b-9584-0ba6ceb8c408' ? 12 : 7}
                 />

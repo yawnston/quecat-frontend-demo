@@ -20,8 +20,9 @@ function createData(
 
 export const plansTableRows = [
     createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 441, ['Neo4j', 'MongoDB'], true, [
-        'Neo4j query',
-        `db.orders.find({
+        `MATCH (customer:Customer)-[:ORDERED]->(order:Order)
+RETURN customer.name AS customerName, order.number AS orderNumber`,
+        `db.order.find({
   items: {
     name: "Lord of the Rings"
   }
@@ -50,9 +51,11 @@ export const plansTableRows = [
 })`,
     ]),
     createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['PostgreSQL', 'Cassandra', 'MongoDB'], false, [
-        'Postgres query',
-        'Cassandra query',
-        `db.orders.find({
+        `SELECT id, name
+FROM customer`,
+        `SELECT customer_id, order_number
+FROM orders`,
+        `db.order.find({
   items: {
     name: "Lord of the Rings"
   }
