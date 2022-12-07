@@ -27,6 +27,7 @@ const MyDocument = (props: DocumentProps) => {
     return (
         <Html lang="en">
             <Head>
+                <title>Quecat Query Tool</title>
                 {/* PWA primary color */}
                 <meta name="theme-color" content={theme.palette.primary.main} />
                 <link rel="shortcut icon" href="/static/favicon.ico" />
