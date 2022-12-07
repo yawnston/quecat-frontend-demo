@@ -25,15 +25,30 @@ const elements_schema: ElementDefinition[] = [
     { data: { id: 'mongodb', label: 'MongoDB' }, classes: 'group group-1' },
     { data: { id: 'cassandra', label: 'Cassandra' }, classes: 'group group-2' },
     { data: { id: 'postgres', label: 'PostgreSQL' }, classes: 'group group-3' },
+    { data: { id: 'neo4j', label: 'Neo4j' }, classes: 'group group-4' },
 
     // Nodes
     { data: { id: '100', label: 'Customer', parent: 'postgres' }, position: { x: 100, y: 100 }, classes: 'selection-root' },
+    { data: { id: 'Cassandra100', label: undefined, parent: 'cassandra' }, position: { x: 100, y: 100 }, classes: 'group-placeholder' },
+    { data: { id: 'Neo4j100', label: undefined, parent: 'neo4j' }, position: { x: 100, y: 100 }, classes: 'group-placeholder' },
+
     { data: { id: '101', label: 'Id', parent: 'postgres' }, position: { x: 0, y: 0 } },
+    { data: { id: 'Cassandra101', label: undefined, parent: 'cassandra' }, position: { x: 0, y: 0 }, classes: 'group-placeholder' },
+    { data: { id: 'Neo4j101', label: undefined, parent: 'neo4j' }, position: { x: 0, y: 0 }, classes: 'group-placeholder' },
+
     { data: { id: '102', label: 'Name', parent: 'postgres' }, position: { x: 0, y: 100 }, classes: 'selection-root' },
+    { data: { id: 'Neo4j102', label: undefined, parent: 'neo4j' }, position: { x: 0, y: 100 }, classes: 'group-placeholder' },
+
     { data: { id: '104', label: 'Surname', parent: 'postgres' }, position: { x: 0, y: 200 } },
+    { data: { id: 'Neo4j104', label: undefined, parent: 'neo4j' }, position: { x: 0, y: 200 }, classes: 'group-placeholder' },
+    
     { data: { id: '110', label: 'Orders', parent: 'cassandra' }, position: { x: 200, y: 0 }, classes: 'selection-selected' },
+    { data: { id: 'Neo4j110', label: undefined, parent: 'neo4j' }, position: { x: 200, y: 0 }, classes: 'group-placeholder' },
+
     { data: { id: '111', label: 'Order', parent: 'cassandra' }, position: { x: 300, y: 0 }, classes: 'selection-selected' },
-    { data: { id: 'X111', label: undefined, parent: 'mongodb' }, position: { x: 300, y: 0 }, classes: 'group-placeholder' },
+    { data: { id: 'Mongo111', label: undefined, parent: 'mongodb' }, position: { x: 300, y: 0 }, classes: 'group-placeholder' },
+    { data: { id: 'Neo4j111', label: undefined, parent: 'neo4j' }, position: { x: 300, y: 0 }, classes: 'group-placeholder' },
+
     { data: { id: '112', label: 'Number', parent: 'cassandra' }, position: { x: 300, y: -100 } },
     { data: { id: '116', label: 'Value', parent: 'mongodb' }, position: { x: 400, y: -100 } },
     { data: { id: '113', label: 'Contact', parent: 'mongodb' }, position: { x: 400, y: 0 } },
@@ -66,14 +81,14 @@ const elements_schema: ElementDefinition[] = [
 const elements_query1: ElementDefinition[] = [
     // Databases
     { data: { id: 'mongodb', label: 'MongoDB' }, classes: 'group group-1' },
-    { data: { id: 'cassandra', label: 'Cassandra' }, classes: 'group group-2' },
-    { data: { id: 'postgres', label: 'PostgreSQL' }, classes: 'group group-3' },
+    { data: { id: 'neo4j', label: 'Neo4j' }, classes: 'group group-4' },
 
     // Nodes
-    { data: { id: '100', label: 'Customer', parent: 'postgres' }, position: { x: 100, y: 100 }, classes: 'selection-root' },
-    { data: { id: '102', label: 'Name', parent: 'postgres' }, position: { x: 0, y: 100 }, classes: 'selection-root' },
-    { data: { id: '110', label: 'Orders', parent: 'cassandra' }, position: { x: 200, y: 0 }, classes: 'selection-selected' },
-    { data: { id: '111', label: 'Order', parent: 'cassandra' }, position: { x: 300, y: 0 }, classes: 'selection-selected' },
+    { data: { id: '100', label: 'Customer', parent: 'neo4j' }, position: { x: 100, y: 100 }, classes: 'selection-root' },
+    { data: { id: '102', label: 'Name', parent: 'neo4j' }, position: { x: 0, y: 100 }, classes: 'selection-root' },
+    { data: { id: '110', label: 'Orders', parent: 'neo4j' }, position: { x: 200, y: 0 }, classes: 'selection-selected' },
+    { data: { id: '111', label: 'Order', parent: 'neo4j' }, position: { x: 300, y: 0 }, classes: 'selection-selected' },
+    { data: { id: 'Mongodb111', label: undefined, parent: 'mongodb' }, position: { x: 300, y: 0 }, classes: 'group-placeholder' },
     { data: { id: '117', label: 'Items', parent: 'mongodb' }, position: { x: 300, y: 100 }, classes: 'selection-selected' },
     { data: { id: '121', label: 'Product', parent: 'mongodb' }, position: { x: 300, y: 200 }, classes: 'selection-selected' },
     { data: { id: '123', label: 'Name', parent: 'mongodb' }, position: { x: 300, y: 300 }, classes: 'selection-root availability-ambiguous' },
@@ -93,6 +108,7 @@ const elements_query2: ElementDefinition[] = [
     { data: { id: 'cassandra', label: 'Cassandra' }, classes: 'group group-2' },
     { data: { id: 'postgres', label: 'PostgreSQL' }, classes: 'group group-3' },
 
+    // TODO: edit this example according to the images
     // Nodes
     { data: { id: '100', label: 'Customer', parent: 'postgres' }, position: { x: 100, y: 100 }, classes: 'selection-root' },
     { data: { id: '102', label: 'Name', parent: 'postgres' }, position: { x: 0, y: 100 }, classes: 'selection-root' },

@@ -24,6 +24,7 @@ const PlanExplainPage: NextPage = () => {
                         >
                             <Grid item>
                                 <div>Plan details go here! {planId}</div>
+                                <div>Here we can put things like planner info, info from individual planners, and query previews.</div>
                             </Grid>
                             <Grid item>
                                 <Stack spacing={2} direction="row">

@@ -18,8 +18,8 @@ function createData(
 }
 
 const rows = [
-    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 584, ['MongoDB', 'Cassandra', 'PostgreSQL'], true),
-    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['MongoDB', 'Cassandra', 'PostgreSQL'], false),
+    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 441, ['Neo4j', 'MongoDB'], true),
+    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['PostgreSQL', 'Cassandra', 'MongoDB'], false),
 ];
 
 export default function PlansTable() {

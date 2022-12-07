@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import PlansTable from "../../../components/planGrid";
+import PlansTable from "../../../components/plansTable";
 
 const ExplainPage: NextPage = () => {
     return (

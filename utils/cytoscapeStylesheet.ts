@@ -126,18 +126,18 @@ export const cytoscapeStylesheet: cytoscape.Stylesheet[] = [
     {
         selector: '.group-3',
         style: {
-            'background-color': 'blue',
-            'color': 'blue',
-            'border-color': 'blue',
+            'background-color': 'purple',
+            'color': 'purple',
+            'border-color': 'purple',
             'padding-right': '16px'
         }
     },
     {
         selector: '.group-4',
         style: {
-            'background-color': 'orange',
-            'color': 'orange',
-            'border-color': 'orange',
+            'background-color': 'blue',
+            'color': 'blue',
+            'border-color': 'blue',
             'padding-right': '20px'
         }
     },
