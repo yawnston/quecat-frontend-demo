@@ -2,8 +2,9 @@ import { Box, Button, Grid, Stack, TextField } from "@mui/material";
 import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useReducer } from "react";
 import CategoryGraph, { ContentKind } from "../../../components/categoryGraph";
-import { plansTableRows } from "../../../components/plansTable";
+import { planCosts, getPlansTableRows, recalculatedPlanCosts } from "../../../components/plansTable";
 
 const PlanExplainPage: NextPage = () => {
     const router = useRouter();
@@ -11,7 +12,9 @@ const PlanExplainPage: NextPage = () => {
     const contentKind = planId === '268ca404-09ba-4b3b-9584-0ba6ceb8c408'
         ? ContentKind.Query1
         : ContentKind.Query2;
-    const planDetails = plansTableRows.find(x => x.planId === planId);
+    const planDetails = getPlansTableRows().find(x => x.planId === planId);
+    const planIndex = getPlansTableRows().findIndex(x => x.planId === planId);
+    const [_ignored, forceUpdate] = useReducer(x => x + 1, 0);
 
     const rightGridItems = [];
     rightGridItems.push(
@@ -40,6 +43,12 @@ const PlanExplainPage: NextPage = () => {
             <Stack spacing={2} direction="row">
                 <Button variant="contained">
                     <Link href={'/query/execute'}>Execute plan</Link>
+                </Button>
+                <Button variant="outlined" onClick={() => {
+                    planCosts[planIndex] = recalculatedPlanCosts[planIndex];
+                    forceUpdate();
+                }}>
+                    Recalculate plan cost
                 </Button>
                 <Button variant="outlined">
                     <Link href={'/query/explain'}>

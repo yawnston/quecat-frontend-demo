@@ -18,8 +18,15 @@ function createData(
     return { planId, cost, databases, isDefault, queries };
 }
 
-export const plansTableRows = [
-    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 441, ['Neo4j', 'MongoDB'], true, [
+export const planCosts = [
+  441, 829
+];
+export const recalculatedPlanCosts = [
+  350, 625
+];
+
+export const getPlansTableRows = () => [
+    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', planCosts[0], ['Neo4j', 'MongoDB'], true, [
         `MATCH (customer:Customer)-[:ORDERED]->(order:Order)
 RETURN customer.name AS customerName, order.number AS orderNumber`,
         `db.order.find({
@@ -50,7 +57,7 @@ RETURN customer.name AS customerName, order.number AS orderNumber`,
   }
 })`,
     ]),
-    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['PostgreSQL', 'Cassandra', 'MongoDB'], false, [
+    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', planCosts[1], ['PostgreSQL', 'Cassandra', 'MongoDB'], false, [
         `SELECT id, name
 FROM customer`,
         `SELECT customer_id, order_number
@@ -98,7 +105,7 @@ export default function PlansTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {plansTableRows.map((row) => (
+                    {getPlansTableRows().map((row) => (
                         <TableRow
                             key={row.planId}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
