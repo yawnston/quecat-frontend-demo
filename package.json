@@ -1,7 +1,8 @@
 {
   "name": "quecat-frontend",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://yawnston.github.io/quecat-frontend/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
