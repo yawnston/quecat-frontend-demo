@@ -13,13 +13,73 @@ function createData(
     cost: number,
     databases: string[],
     isDefault: boolean,
+    queries: string[],
 ) {
-    return { planId, cost, databases, isDefault };
+    return { planId, cost, databases, isDefault, queries };
 }
 
-const rows = [
-    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 441, ['Neo4j', 'MongoDB'], true),
-    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['PostgreSQL', 'Cassandra', 'MongoDB'], false),
+export const plansTableRows = [
+    createData('268ca404-09ba-4b3b-9584-0ba6ceb8c408', 441, ['Neo4j', 'MongoDB'], true, [
+        'Neo4j query',
+        `db.orders.find({
+  items: {
+    name: "Lord of the Rings"
+  }
+},
+{
+  _id: 0,
+  number: 1,
+  productName: {
+    "$getField": {
+      field: "name",
+      input: {
+        "$first": {
+          "$filter": {
+            input: "$items",
+            cond: {
+              $eq: [
+                "$$this.name",
+                "Lord of the Rings"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+})`,
+    ]),
+    createData('b158d3d9-034b-407c-98cb-ac3d9ccf88ab', 639, ['PostgreSQL', 'Cassandra', 'MongoDB'], false, [
+        'Postgres query',
+        'Cassandra query',
+        `db.orders.find({
+  items: {
+    name: "Lord of the Rings"
+  }
+},
+{
+  _id: 0,
+  number: 1,
+  productName: {
+    "$getField": {
+      field: "name",
+      input: {
+        "$first": {
+          "$filter": {
+            input: "$items",
+            cond: {
+              $eq: [
+                "$$this.name",
+                "Lord of the Rings"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+})`,
+    ]),
 ];
 
 export default function PlansTable() {
@@ -35,7 +95,7 @@ export default function PlansTable() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {plansTableRows.map((row) => (
                         <TableRow
                             key={row.planId}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
