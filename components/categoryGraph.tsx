@@ -12,7 +12,7 @@ export enum ContentKind {
 }
 
 type CategoryGraphProps = {
-    schemaCategory: SchemaCategory,
+    schemaCategory: SchemaCategory | undefined,
     contentKind: ContentKind,
 }
 
