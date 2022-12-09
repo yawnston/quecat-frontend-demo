@@ -20,6 +20,28 @@ WHERE {
     FILTER(?productName = "Lord of the Rings")
 }`;
 
+const demoQuery: string = 
+`SELECT {
+    _:friendsOrders friend ?friendA ;
+        friend ?friendB ;
+        numProds COUNT(DISTINCT ?comProd)
+            AS ?numProds .
+    ?friendA name ?friendAName ;
+        surname ?friendASurname .
+    ?friendB name ?friendBName ;
+        surname ?friendBSurname .         
+} WHERE {
+    ?friendA -4/5 ?friendB .
+    FILTER(?friendA < ?friendB)
+
+    ?friendA -9/10/-12/-13 ?comProd ;
+        1 ?friendAName ;
+        3 ?friendASurname .
+    ?friendB -9/10/-12/-13 ?comProd ;
+        1 ?friendBName ;
+        3 ?friendBSurname .
+} ORDER BY ?numProds DESC`;
+
 const QueryPage: NextPage = () => {
     return (
         <>
@@ -33,7 +55,7 @@ const QueryPage: NextPage = () => {
                             justifyContent={'space-between'} alignItems={'stretch'}
                         >
                             <Grid item>
-                                <TextField label="Query" defaultValue={defaultQuery}
+                                <TextField label="Query" defaultValue={demoQuery}
                                     multiline fullWidth spellCheck={false}
                                 />
                             </Grid>

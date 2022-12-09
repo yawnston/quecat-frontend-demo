@@ -78,6 +78,63 @@ const elements_schema: ElementDefinition[] = [
     { data: { source: '114', target: '115', label: '31' } },
 ];
 
+const elements_schema_paper: ElementDefinition[] = [
+    // Databases
+    { data: { id: 'mongodb', label: 'MongoDB' }, classes: 'group group-1' },
+    { data: { id: 'postgres', label: 'PostgreSQL' }, classes: 'group group-3' },
+    { data: { id: 'neo4j', label: 'Neo4j' }, classes: 'group group-4' },
+
+    // Nodes
+    { data: { id: '100', label: 'Customer', parent: 'postgres' }, position: { x: 100, y: 0 }, classes: 'selection-root availability-ambiguous' },
+    { data: { id: 'Mongodb100', label: undefined, parent: 'mongodb' }, position: { x: 100, y: 0 }, classes: 'group-placeholder' },
+    { data: { id: 'Neo4j100', label: undefined, parent: 'neo4j' }, position: { x: 100, y: 0 }, classes: 'group-placeholder' },
+
+    { data: { id: '101', label: 'Id', parent: 'postgres' }, position: { x: 100, y: -100 } },
+    { data: { id: 'Mongodb101', label: undefined, parent: 'mongodb' }, position: { x: 100, y: -100 }, classes: 'group-placeholder' },
+    { data: { id: 'Neo4j101', label: undefined, parent: 'neo4j' }, position: { x: 100, y: -100 }, classes: 'group-placeholder' },
+
+    { data: { id: '102', label: 'Name', parent: 'postgres' }, position: { x: 0, y: 0 }, classes: 'selection-root' },
+    { data: { id: 'Neo4j102', label: undefined, parent: 'neo4j' }, position: { x: 0, y: 0 }, classes: 'group-placeholder' },
+
+    { data: { id: '104', label: 'Surname', parent: 'postgres' }, position: { x: 0, y: 100 }, classes: 'selection-root' },
+    { data: { id: 'Neo4j104', label: undefined, parent: 'neo4j' }, position: { x: 0, y: 100 }, classes: 'group-placeholder' },
+
+    { data: { id: 'FRIENDS', label: 'Friends', parent: 'postgres' }, position: {x: 0, y: -100}, classes: 'selection-selected'},
+    { data: { id: 'Neo4jFRIENDS', label: undefined, parent: 'neo4j' }, position: {x: 0, y: -100}, classes: 'group-placeholder' },
+
+    { data: { id: 'CONTACT', label: 'Contact', parent: 'neo4j' }, position: {x: 0, y: 200}},
+    { data: { id: 'KEY', label: 'Key', parent: 'neo4j' }, position: {x: 0, y: 300}},
+    { data: { id: 'VALUE', label: 'Value', parent: 'neo4j' }, position: {x: 100, y: 300}},
+    
+    { data: { id: '110', label: 'Orders', parent: 'mongodb' }, position: { x: 200, y: 0 }, classes: 'selection-selected' },
+    { data: { id: '111', label: 'Order', parent: 'mongodb' }, position: { x: 300, y: 0 }, classes: 'selection-selected' },
+    { data: { id: '112', label: 'Number', parent: 'mongodb' }, position: { x: 300, y: -100 } },
+
+    { data: { id: '117', label: 'Items', parent: 'mongodb' }, position: { x: 300, y: 100 }, classes: 'selection-selected' },
+    { data: { id: '121', label: 'Product', parent: 'mongodb' }, position: { x: 300, y: 200 }, classes: 'selection-root availability-removable' },
+    { data: { id: '123', label: 'Name', parent: 'mongodb' }, position: { x: 400, y: 100 } },
+    { data: { id: '122', label: 'Id', parent: 'mongodb' }, position: { x: 200, y: 200 } },
+    { data: { id: '124', label: 'Price', parent: 'mongodb' }, position: { x: 400, y: 200 } },
+
+    // Edges
+    { data: { source: '100', target: '102', label: '1' } },
+    { data: { source: '100', target: '101', label: '2' } },
+    { data: { source: '100', target: '104', label: '3' } },
+    { data: { source: 'FRIENDS', target: '100', label: '4' } },
+    { data: { source: 'FRIENDS', target: '100', label: '5' } },
+    { data: { source: 'CONTACT', target: '100', label: '6' } },
+    { data: { source: 'CONTACT', target: 'KEY', label: '7' } },
+    { data: { source: 'CONTACT', target: 'VALUE', label: '8' } },
+    { data: { source: '110', target: '100', label: '9' } },
+    { data: { source: '110', target: '111', label: '10' } },
+    { data: { source: '111', target: '112', label: '11' } },
+    { data: { source: '117', target: '111', label: '12' } },
+    { data: { source: '117', target: '121', label: '13' } },
+    { data: { source: '121', target: '122', label: '14' } },
+    { data: { source: '121', target: '123', label: '15' } },
+    { data: { source: '121', target: '124', label: '16' } },
+];
+
 const elements_query1: ElementDefinition[] = [
     // Databases
     { data: { id: 'mongodb', label: 'MongoDB' }, classes: 'group group-1' },
@@ -142,7 +199,8 @@ const CategoryGraph = (props: CategoryGraphProps) => {
 
     let elements: ElementDefinition[] = [];
     if (props.contentKind === ContentKind.Schema) {
-        elements = elements_schema;
+        // elements = elements_schema;
+        elements = elements_schema_paper;
     } else if (props.contentKind === ContentKind.Query1) {
         elements = elements_query1;
     } else {
